@@ -16,4 +16,18 @@ describe("This the assignment of 5-3-22", () => {
     expect(localStorage.getItem("constructor-functions")).to.not.equal(null);
     expect(localStorage.getItem("prototype")).to.not.equal(null);
   });
+
+  it("Checking the Data appending on Button click", () => {
+    let scopeData = localStorage.getItem("scope");
+    cy.get("#scope").click();
+    scopeData.forEach((element, index) => {
+      cy.get("ul")
+        .children()
+        .eq(index)
+        .then((li) => {
+          const text = li.text();
+          expect(text).to.eq(element);
+        });
+    });
+  });
 });
